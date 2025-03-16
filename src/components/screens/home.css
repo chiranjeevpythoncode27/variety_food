@@ -1,0 +1,138 @@
+/* 🌟 Home Page Styling */
+
+.home-container {
+    background: linear-gradient(to bottom right, #fffacd, #ffeb99);
+    /* Light Yellow Gradient */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    text-align: center;
+}
+
+
+/* 🏆 Carousel Styling */
+
+.carousel-container {
+    width: 100%;
+    max-width: 1200px;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(to bottom, #fff8dc, #ffeb99);
+}
+
+
+/* 🔍 Search Bar */
+
+.search-bar {
+    width: 80%;
+    max-width: 600px;
+    padding: 12px;
+    margin: 20px 0;
+    border-radius: 25px;
+    border: 2px solid #ff9800;
+    /* Orange Tint */
+    outline: none;
+    font-size: 18px;
+    transition: all 0.3s ease-in-out;
+    background: rgba(255, 255, 255, 0.8);
+}
+
+.search-bar:focus {
+    border-color: #ff5722;
+    box-shadow: 0px 5px 12px rgba(255, 87, 34, 0.4);
+}
+
+
+/* 🍔 Food List Styling */
+
+.food-list-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    width: 90%;
+    max-width: 1200px;
+    padding: 20px;
+}
+
+
+/* 🥗 Food Item Card */
+
+.food-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+    padding: 15px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.food-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.25);
+}
+
+
+/* 👣 Footer */
+
+.footer {
+    width: 100%;
+    text-align: center;
+    padding: 12px;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    position: relative;
+    bottom: 0;
+    border-top: 3px solid #ff9800;
+    /* Stylish orange border */
+}
+
+
+/* 🔼 Fully Orange Aesthetic Go to Top Button */
+
+.go-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #ff9800;
+    /* Bright Orange */
+    border: 2px solid #ff6f00;
+    /* Darker Orange Border */
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 24px;
+    color: white;
+    box-shadow: 0px 5px 15px rgba(255, 111, 0, 0.5);
+    transition: all 0.3s ease-in-out;
+}
+
+
+/* 🔥 Hover Effect - Darker Orange */
+
+.go-to-top:hover {
+    background: #ff5722;
+    /* Darker Orange on Hover */
+    transform: scale(1.1);
+    box-shadow: 0px 8px 20px rgba(255, 87, 34, 0.7);
+    border-color: #ff4500;
+}
+
+
+/* 📱 Responsive - Adjust for small screens */
+
+@media (max-width: 600px) {
+    .go-to-top {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+        bottom: 15px;
+        right: 15px;
+    }
+}

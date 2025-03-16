@@ -1,0 +1,143 @@
+/* Navbar.css */
+
+.sexy-navbar {
+    background-color: #ff7f00;
+    /* Vibrant Orange */
+    padding: 10px 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease-in-out;
+}
+
+.navbar-brand img.nav-logo {
+    height: 50px;
+    width: auto;
+    border-radius: 10px;
+}
+
+
+/* Links */
+
+.sexy-link {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: white !important;
+    margin-right: 15px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.sexy-link:hover {
+    transform: scale(1.1);
+}
+
+
+/* Buttons */
+
+.btn.sexy-btn {
+    background-color: white;
+    color: #ff7f00;
+    font-weight: bold;
+    border-radius: 20px;
+    padding: 8px 15px;
+    margin-left: 10px;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn.sexy-btn:hover {
+    background-color: #ffa94d;
+    color: white;
+}
+
+
+/* Cart Badge */
+
+.cart-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: red;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* Logout Button */
+
+.logout-btn {
+    background-color: #ff4d4d;
+    color: white;
+    font-weight: bold;
+    border-radius: 20px;
+    padding: 8px 15px;
+    margin-left: 10px;
+}
+
+.logout-btn:hover {
+    background-color: #cc0000;
+}
+
+
+/* Spin & Win Button */
+
+.spin-button {
+    background: #fff000;
+    color: black;
+    font-weight: bold;
+    border-radius: 20px;
+    padding: 8px 15px;
+    margin-left: 10px;
+}
+
+.spin-button:hover {
+    background: #ffe600;
+    color: #333;
+}
+
+
+/* Responsive Design */
+
+@media (max-width: 992px) {
+    .navbar {
+        flex-direction: column;
+        align-items: center;
+    }
+    .navbar-collapse {
+        text-align: center;
+    }
+    .navbar-nav {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+    .btn.sexy-btn,
+    .logout-btn,
+    .spin-button {
+        width: 100%;
+        margin-top: 10px;
+        text-align: center;
+    }
+}
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInAnimation 1s ease-out forwards;
+}
+
+@keyframes fadeInAnimation {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
