@@ -47,7 +47,7 @@ export default function Cart() {
 
     setLoading(true);
     try {
-      const response = await axios.post("http://localhost:5000/api/cart/cash-on-delivery", { cart });
+      const response = await axios.post("https://variety-food.onrender.com/api/cart/cash-on-delivery", { cart });
       if (response.data.success) {
         alert("Order placed successfully via Cash on Delivery!");
         handleClearCart(); // Clear cart after successful order
@@ -70,7 +70,7 @@ export default function Cart() {
     }
 
     try {
-      const { data } = await axios.post("http://localhost:5000/api/payment/order", {
+      const { data } = await axios.post("https://variety-food.onrender.com/api/payment/order", {
         amount: totalPrice, // Sending total price to backend
       });
 
@@ -82,7 +82,7 @@ export default function Cart() {
         description: "Order Payment",
         order_id: data.order.id,
         handler: async (response) => {
-          const verifyRes = await axios.post("http://localhost:5000/api/payment/verify", response);
+          const verifyRes = await axios.post("https://variety-food.onrender.com/api/payment/verify", response);
           if (verifyRes.data.success) {
             alert("Payment Successful!");
             handleClearCart(); // Clear cart after successful payment
