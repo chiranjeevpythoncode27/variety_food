@@ -1,22 +1,22 @@
 const express = require("express");
 const cors = require("cors");
 const mongoDB = require("./db");
+require("dotenv").config();
 
 const app = express();
 const port = process.env.PORT || 5000;
 
-// 🔗 Connect to MongoDB
+// ✅ Connect to MongoDB
 mongoDB();
 
 // ✅ Middleware
 app.use(cors());
-app.use(express.json()); // Parse JSON
+app.use(express.json());
 
-// ✅ Include API Routes (Make sure this line is present)
-app.use("/api", require("./Routes/DisplayData")); // This must be included!
-app.use("/api", require("./Routes/CreateUser")); // Ensure this exists
-app.use("/api", require("./Routes/CreateUser")); // This ensures the route is loaded
-
+// ✅ API Routes
+app.use("/api", require("./Routes/DisplayData"));
+app.use("/api", require("./Routes/CreateUser"));
+app.use("/api/payment", require("./Routes/paymentRoutes")); // ✅ Add this line!
 
 // ✅ Default Route
 app.get("/", (req, res) => {
