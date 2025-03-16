@@ -10,7 +10,7 @@ import Signup from "./components/screens/Signup";
 import Cart from "./components/screens/Cart";
 import Navbar from "./components/Navbar";
 import SpinGame from "./components/SpinGame"; // 🎰 Spin & Win Page
-
+import Myaccount from "./components/screens/Myaccount";
 
 import { CartProvider } from "./components/ContextReducer";
 import MyOrders from "./components/screens/Myorders";
@@ -43,6 +43,7 @@ function App() {
                 <Route path="/cart" element={<Cart />} />
                 <Route path="/spin" element={<SpinGame />} />
                 <Route path="/orders" element={<MyOrders />} />
+                <Route path="/account" element={<Myaccount />} />
               </Routes>
             </div>
           </div>

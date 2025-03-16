@@ -40,8 +40,12 @@ export default function Home() {
 
     return (
         <div style={{ backgroundColor: "#fffacd", minHeight: "100vh", paddingBottom: "20px" }}>
-            { !isLoaded ? (
-                <h1>Loading items...</h1>
+            {/* ✅ Show "Welcome to Variety" Only During Loading */}
+            {!isLoaded ? (
+                <div className="loading-container">
+                    <h1 className="welcome-text">🎉 Welcome to Variety Sweets & Restaurant 🎉</h1>
+                    <div className="loading-spinner"></div>
+                </div>
             ) : error ? (
                 <h2 style={{ color: "red", textAlign: "center" }}>Error: {error}</h2>
             ) : (

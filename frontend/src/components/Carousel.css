@@ -179,3 +179,40 @@
         height: 35px;
     }
 }
+
+
+/* Center the Carousel */
+
+.carousel-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+
+/* Search Bar */
+
+.search-wrapper {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+
+/* Custom Styling for Images */
+
+.carousel-img {
+    max-height: 500px;
+    /* Adjust image height */
+    object-fit: cover;
+    transition: transform 0.5s ease-in-out;
+    /* Smooth zoom effect */
+}
+
+
+/* Zoom Effect on Hover */
+
+.carousel-item:hover .carousel-img {
+    transform: scale(1.1);
+}
