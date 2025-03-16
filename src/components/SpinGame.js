@@ -8,13 +8,12 @@ export default function SpinWheel() {
   const [prize, setPrize] = useState(null);
   const prizes = ["10% Off", "15% Off", "5% Off", "❌ Try Again"];
   
-  const [play] = useSound(spinSound, { volume: 0.5 });
+
 
   const handleSpin = () => {
     if (spinning) return;
     
-    setSpinning(true);
-    play(); // Play spin sound
+  
     
     const randomDegree = 3600 + Math.floor(Math.random() * 360);
     setRotation(randomDegree);
