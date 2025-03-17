@@ -138,7 +138,7 @@ export default function Cart() {
             <h4 className="text-center fw-bold">Order Summary</h4>
             <hr />
             <p className="fw-bold text-dark">Total Price: <span className="text-success">₹{totalPrice}</span></p>
-            <button className="btn btn-warning w-100 fw-bold" onClick={handleCheckout}>Proceed to Payment 💳</button>
+
             <button className="btn btn-info w-100 fw-bold mt-2" onClick={handleCOD}>Cash on Delivery 🚚</button>
           </div>
         </div>
