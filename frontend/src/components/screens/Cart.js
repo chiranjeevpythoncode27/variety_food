@@ -1,22 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useCart, useDispatchCart } from "../ContextReducer";
-import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import "./cart.css";
 
 export default function Cart() {
   const cart = useCart();
   const dispatch = useDispatchCart();
-  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
+  // Load cart from localStorage on first render
   useEffect(() => {
-    const savedCart = JSON.parse(localStorage.getItem("cart"));
-    if (savedCart && savedCart.length > 0) {
-      savedCart.forEach((item) => {
-        dispatch({ type: "ADD_FROM_STORAGE", payload: item });
-      });
+    const savedCart = JSON.parse(localStorage.getItem("cart")) || [];
+    if (savedCart.length > 0) {
+      dispatch({ type: "SET_CART", payload: savedCart }); // ✅ Set cart at once
     }
   }, [dispatch]);
 
+  // Save cart to localStorage whenever it changes
   useEffect(() => {
     if (cart.length > 0) {
       localStorage.setItem("cart", JSON.stringify(cart));
@@ -34,72 +34,12 @@ export default function Cart() {
     localStorage.removeItem("cart");
   };
 
-  const handleCOD = async () => {
+  const handleCOD = () => {
     if (cart.length === 0) {
       alert("Your cart is empty!");
       return;
     }
-
-    setLoading(true);
-    try {
-      const response = await axios.post("http://localhost:5000/api/cart/cash-on-delivery", { cart });
-      if (response.data.success) {
-        alert("Order placed successfully via Cash on Delivery!");
-        handleClearCart();
-      } else {
-        alert("Failed to place order.");
-      }
-    } catch (error) {
-      console.error("Error placing COD order:", error);
-      alert("Error placing COD order. Try again!");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleCheckout = async () => {
-    if (cart.length === 0) {
-      alert("Your cart is empty!");
-      return;
-    }
-
-    try {
-      const { data } = await axios.post("http://localhost:5000/api/payment/order", {
-        amount: totalPrice,
-      });
-
-      const options = {
-        key: "rzp_test_5Ro3pYiCdJqkSs",
-        amount: data.order.amount,
-        currency: "INR",
-        name: "Variety Sweets & Restaurant",
-        description: "Order Payment",
-        order_id: data.order.id,
-        handler: async (response) => {
-          const verifyRes = await axios.post("http://localhost:5000/api/payment/verify", response);
-          if (verifyRes.data.success) {
-            alert("Payment Successful!");
-            handleClearCart();
-          } else {
-            alert("Payment Verification Failed!");
-          }
-        },
-        prefill: {
-          name: "Customer Name",
-          email: "customer@example.com",
-          contact: "7060988418",
-        },
-        theme: {
-          color: "#F37254",
-        },
-      };
-
-      const rzp = new window.Razorpay(options);
-      rzp.open();
-    } catch (error) {
-      console.error("Error in Razorpay Payment:", error);
-      alert("Payment failed. Try again!");
-    }
+    navigate("/cod", { state: { cart } });
   };
 
   const totalPrice = cart.reduce((total, item) => total + item.price * item.quantity, 0);
@@ -139,14 +79,15 @@ export default function Cart() {
             <hr />
             <p className="fw-bold text-dark">Total Price: <span className="text-success">₹{totalPrice}</span></p>
 
-            <button className="btn btn-info w-100 fw-bold mt-2" onClick={handleCOD}>Cash on Delivery 🚚</button>
+            <button className="btn btn-info w-100 fw-bold mt-2" onClick={handleCOD}>
+              Cash on Delivery 🚚
+            </button>
           </div>
         </div>
       )}
 
-      {/* ✅ Updated Cart Actions with Colors */}
       <div className="cart-actions mt-3">
-        <a href="/" className="btn custom-orange">Back to Shopping 🛍️</a>
+        <button className="btn custom-orange" onClick={() => navigate("/")}>Back to Shopping 🛍️</button>
         <button className="btn custom-red ms-2" onClick={handleClearCart} disabled={cart.length === 0}>
           Clear Cart ❌
         </button>

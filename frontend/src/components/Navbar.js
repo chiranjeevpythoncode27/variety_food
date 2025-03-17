@@ -59,10 +59,7 @@ export default function Navbar() {
                   )}
                 </Link>
 
-                <Link className="btn sexy-btn myaccount-btn" to="/account">
-  🙍 My Account
-</Link>
-
+    
 
                 <button className="btn logout-btn" onClick={handleLogout}>
                   Logout

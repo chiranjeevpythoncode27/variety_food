@@ -11,10 +11,10 @@ import Cart from "./components/screens/Cart";
 import Navbar from "./components/Navbar";
 import SpinGame from "./components/SpinGame"; // 🎰 Spin & Win Page
 import Myaccount from "./components/screens/Myaccount";
+import MyOrders from "./components/screens/Myorders";
+import COD from "./components/screens/cod"; // ✅ Added COD Page Import
 
 import { CartProvider } from "./components/ContextReducer";
-import MyOrders from "./components/screens/Myorders";
-
 
 // ✅ Create Theme Context for Dark Mode
 const ThemeContext = createContext();
@@ -44,6 +44,7 @@ function App() {
                 <Route path="/spin" element={<SpinGame />} />
                 <Route path="/orders" element={<MyOrders />} />
                 <Route path="/account" element={<Myaccount />} />
+                <Route path="/cod" element={<COD />} /> {/* ✅ Added COD Route */}
               </Routes>
             </div>
           </div>
@@ -56,10 +57,9 @@ function App() {
 // ✅ Function to conditionally render Navbar with Dark Mode Toggle
 function ConditionalNavbar({ toggleDarkMode, darkMode }) {
   const location = useLocation();
-  const showNavbar = ["/", "/cart", "/spin"].includes(location.pathname);
+  const showNavbar = ["/", "/cart", "/spin", "/cod"].includes(location.pathname); // ✅ Show Navbar on COD page
 
   return showNavbar ? <Navbar toggleDarkMode={toggleDarkMode} darkMode={darkMode} /> : null;
 }
-
 
 export default App;
