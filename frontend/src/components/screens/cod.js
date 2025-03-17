@@ -31,7 +31,7 @@ export default function COD() {
   📞 *Contact Number:* ${formData.phone}
   
   🛒 *Order Summary:*
-  ${cart.map((item, index) => `• ${item.itemName} (Qty: ${item.quantity})`).join("\n")}
+  ${cart.map((item, index) => `• ${item.itemName} (Size: ${item.size}, Qty: ${item.quantity})`).join("\n")}
   
   ✅ *Total Items:* ${cart.length}
   
@@ -39,6 +39,7 @@ export default function COD() {
       `,
     };
   };
+  
   
   
 
