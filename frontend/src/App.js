@@ -61,4 +61,5 @@ function ConditionalNavbar({ toggleDarkMode, darkMode }) {
   return showNavbar ? <Navbar toggleDarkMode={toggleDarkMode} darkMode={darkMode} /> : null;
 }
 
+
 export default App;
