@@ -10,16 +10,16 @@ export default function AdminDashboard() {
 
   const fetchOrders = async () => {
     try {
-      const response = await axios.get("https://variety-food-front-end.onrender.com/api/admin/orders");
+      const response = await axios.get("http://localhost:5000/api/admin/orders");
       setOrders(response.data);
     } catch (error) {
       console.error("Error fetching orders:", error);
     }
   };
-
+//for depo
   const updateStatus = async (id, status) => {
     try {
-      await axios.put(`https://variety-food-front-end.onrender.com/api/admin/orders/${id}`, { status });
+      await axios.put(`http://localhost:5000/api/admin/orders/${id}`, { status });
       fetchOrders();
     } catch (error) {
       console.error("Error updating status:", error);
@@ -28,7 +28,7 @@ export default function AdminDashboard() {
 
   const deleteOrder = async (id) => {
     try {
-      await axios.delete(`https://variety-food-front-end.onrender.com/api/admin/orders/${id}`);
+      await axios.delete(`http://localhost:5000/api/admin/orders/${id}`);
       fetchOrders();
     } catch (error) {
       console.error("Error deleting order:", error);
