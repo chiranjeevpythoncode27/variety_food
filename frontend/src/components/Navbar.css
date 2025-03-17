@@ -85,18 +85,26 @@
 
 /* Spin & Win Button */
 
-.spin-button {
-    background: #fff000;
+
+/* My Account Button - Same as My Cart */
+
+
+/* My Account Button - Same as My Cart */
+
+.myaccount-btn {
+    background-color: #ffcc00;
     color: black;
     font-weight: bold;
-    border-radius: 20px;
-    padding: 8px 15px;
-    margin-left: 10px;
+    margin-right: 10px;
+    border-radius: 8px;
+    padding: 8px 12px;
+    transition: all 0.3s ease-in-out;
+    display: inline-block;
 }
 
-.spin-button:hover {
-    background: #ffe600;
-    color: #333;
+.myaccount-btn:hover {
+    background-color: #ff9900;
+    color: white;
 }
 
 
@@ -129,6 +137,71 @@
     opacity: 0;
     transform: translateY(20px);
     animation: fadeInAnimation 1s ease-out forwards;
+}
+
+.sexy-navbar {
+    background-color: orange !important;
+    /* 🟠 Orange background */
+    padding: 10px 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.navbar-brand img.nav-logo {
+    height: 50px;
+    /* Adjust logo size */
+    border-radius: 8px;
+}
+
+.sexy-link {
+    color: white !important;
+    font-weight: bold;
+    font-size: 18px;
+    margin-right: 15px;
+    transition: color 0.3s ease-in-out;
+}
+
+.sexy-link:hover {
+    color: black !important;
+}
+
+.sexy-btn {
+    background-color: #ffcc00;
+    color: black;
+    font-weight: bold;
+    margin-right: 10px;
+    border-radius: 8px;
+    padding: 8px 12px;
+    transition: all 0.3s ease-in-out;
+}
+
+.sexy-btn:hover {
+    background-color: #ff9900;
+    color: white;
+}
+
+.logout-btn {
+    background-color: red;
+    color: white;
+    font-weight: bold;
+    padding: 8px 12px;
+    border-radius: 8px;
+    transition: all 0.3s ease-in-out;
+}
+
+.logout-btn:hover {
+    background-color: darkred;
+}
+
+.cart-badge {
+    background-color: red;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 50%;
+    padding: 4px 8px;
+    position: absolute;
+    top: -5px;
+    right: -10px;
 }
 
 @keyframes fadeInAnimation {

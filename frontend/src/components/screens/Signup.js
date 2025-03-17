@@ -24,10 +24,11 @@ export default function Signup() {
         console.log(json);
 
         if (!json.success) {
-            alert("Enter Valid Credentials");
+            alert("❌ Signup Failed! Please check your details.");
         } else {
-            alert("Signup Successful! Redirecting...");
-            navigate("/");
+            localStorage.setItem("authToken", json.authToken); // Save token
+            alert("✅ Signup Successful! Redirecting to Home...");
+            navigate("/"); // Redirect to Home
         }
     };
 

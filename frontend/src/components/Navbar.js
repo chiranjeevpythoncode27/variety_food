@@ -59,10 +59,10 @@ export default function Navbar() {
                   )}
                 </Link>
 
-                {/* 🎡 Spin & Win Button */}
-                <Link className="btn sexy-btn spin-button" to="/spin">
-                  🎡 Spin & Win
-                </Link>
+                <Link className="btn sexy-btn myaccount-btn" to="/account">
+  🙍 My Account
+</Link>
+
 
                 <button className="btn logout-btn" onClick={handleLogout}>
                   Logout

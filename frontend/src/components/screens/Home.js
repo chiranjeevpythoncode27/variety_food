@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Carousel from "../Carousal";
 import Footer from "../Footer";
 import FoodList from "../FoodList";
+import { FaArrowUp } from "react-icons/fa"; // Import arrow icon
 import "./home.css";
 
 export default function Home() {
@@ -10,6 +11,7 @@ export default function Home() {
     const [searchQuery, setSearchQuery] = useState("");
     const [isLoaded, setIsLoaded] = useState(false);
     const [error, setError] = useState(null);
+    const [showBackToTop, setShowBackToTop] = useState(false); // State for Back to Top button
 
     useEffect(() => {
         const loadData = async () => {
@@ -34,6 +36,25 @@ export default function Home() {
         loadData();
     }, []);
 
+    // Show Back to Top button when scrolling down
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY > 300) {
+                setShowBackToTop(true);
+            } else {
+                setShowBackToTop(false);
+            }
+        };
+
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
+
+    // Function to scroll to the top
+    const scrollToTop = () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    };
+
     const filteredItems = foodItems?.filter((item) =>
         item?.name?.toLowerCase().includes(searchQuery.toLowerCase())
     ) || [];
@@ -54,6 +75,13 @@ export default function Home() {
                     <FoodList foodCat={foodCat} foodItems={filteredItems} searchQuery={searchQuery} />
                     <Footer />
                 </>
+            )}
+
+            {/* 🔼 Back to Top Button */}
+            {showBackToTop && (
+                <button className="back-to-top" onClick={scrollToTop}>
+                    <FaArrowUp />
+                </button>
             )}
         </div>
     );
