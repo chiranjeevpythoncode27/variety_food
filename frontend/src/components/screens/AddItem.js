@@ -16,7 +16,7 @@ export default function AddItem() {
     const handleSubmit = async(e) => {
         e.preventDefault();
 
-        const response = await fetch("https://variety-food.onrender.com//api/addfooditem", {
+        const response = await fetch("https://variety-food.onrender.com/api/addfooditem", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

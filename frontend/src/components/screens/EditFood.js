@@ -6,7 +6,7 @@ export default function EditFood() {
     const [food, setFood] = useState({ name: "", category: "", price: "", description: "" });
 
     useEffect(() => {
-        fetch(`http://https://variety-food.onrender.com//api/foodData`)
+        fetch(`http://https://variety-food.onrender.com/api/foodData`)
             .then((res) => res.json())
             .then((data) => {
                 const foundFood = data.foodItems.find((item) => item._id === id);
@@ -22,7 +22,7 @@ export default function EditFood() {
     const handleSubmit = async(e) => {
         e.preventDefault();
         try {
-            const res = await fetch(`http://https://variety-food.onrender.com//api/food/update/${id}`, {
+            const res = await fetch(`http://https://variety-food.onrender.com/api/food/update/${id}`, {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(food),
