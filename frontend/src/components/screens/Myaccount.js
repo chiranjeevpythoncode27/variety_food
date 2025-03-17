@@ -10,14 +10,14 @@ export default function MyAccount() {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const token = localStorage.getItem("authToken"); // Retrieve token from localStorage
+        const token = localStorage.getItem("authToken");
         if (!token) {
           throw new Error("No authentication token found");
         }
 
         const response = await axios.get("https://your-backend.com/api/user", {
           headers: {
-            Authorization: `Bearer ${token}`, // Attach token in request headers
+            Authorization: `Bearer ${token}`, 
           },
         });
 
