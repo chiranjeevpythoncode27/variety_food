@@ -1,12 +1,12 @@
 import React, { useState } from "react";
+import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 import "./cod.css"; // ✅ Optional: Add styling
 
 export default function COD() {
   const location = useLocation();
   const navigate = useNavigate();
-
-  const cart = location.state?.cart || []; // ✅ Get selected cart items from navigation state
+  const cart = location.state?.cart || [];
 
   const [formData, setFormData] = useState({
     name: "",
@@ -19,8 +19,54 @@ export default function COD() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  // Convert form data to required JSON format
+  const convertToJson = (formData) => {
+    return {
+      phone: `+917060988418`, 
+      message: `
+  📦 *New Order Received* 🚀
+  
+  👤 *Customer Name:* ${formData.name}
+  🏠 *Address:* ${formData.address}
+  📞 *Contact Number:* ${formData.phone}
+  
+  🛒 *Order Summary:*
+  ${cart.map((item, index) => `• ${item.itemName} (Qty: ${item.quantity})`).join("\n")}
+  
+  ✅ *Total Items:* ${cart.length}
+  
+  Please process the order accordingly. 📩
+      `,
+    };
+  };
+  
+  
+
+  // Function to send COD confirmation via WhatsApp
+  const confirmCOD = async (formData) => {
+    try {
+      const finalData = convertToJson(formData);
+      const response = await axios.post(
+        "http://localhost:5000/api/send-sms",
+        finalData, // ✅ Send the correctly formatted JSON
+        { headers: { "Content-Type": "application/json" } }
+      );
+
+      if (response.status === 200) {
+        console.log("WhatsApp Message Sent Successfully:", response.data);
+        alert("Order placed successfully! 🎉");
+        navigate("/"); // ✅ Redirect after success
+      } else {
+        throw new Error("Failed to send WhatsApp message");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      alert("Failed to send confirmation via WhatsApp. Please try again.");
+    }
+  };
+
   // Handle form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     // Simple validation
@@ -34,14 +80,15 @@ export default function COD() {
       return;
     }
 
-    alert("Order placed successfully! 🎉");
-    navigate("/"); // ✅ Redirect back to home or orders page
+    await confirmCOD(formData);
   };
 
   return (
     <div className="container mt-5">
       <h2 className="text-center text-success">📦 Cash on Delivery</h2>
-      <p className="text-center text-muted">Please provide your details to confirm the order.</p>
+      <p className="text-center text-muted">
+        Please provide your details to confirm the order.
+      </p>
 
       {/* ✅ Display Selected Cart Items */}
       {cart.length > 0 ? (
@@ -50,11 +97,19 @@ export default function COD() {
           <div className="cart-list">
             {cart.map((item, index) => (
               <div key={index} className="cart-item">
-                <img src={item.img || "https://via.placeholder.com/80"} alt={item.itemName} className="cart-item-img" />
+                <img
+                  src={item.img || "https://via.placeholder.com/80"}
+                  alt={item.itemName}
+                  className="cart-item-img"
+                />
                 <div className="cart-item-details">
                   <h6>{item.itemName}</h6>
-                  <p>Size: {item.size} | Qty: {item.quantity}</p>
-                  <p className="fw-bold text-success">₹{item.price * item.quantity}</p>
+                  <p>
+                    Size: {item.size} | Qty: {item.quantity}
+                  </p>
+                  <p className="fw-bold text-success">
+                    ₹{item.price * item.quantity}
+                  </p>
                 </div>
               </div>
             ))}

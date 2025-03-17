@@ -181,7 +181,7 @@
 /* Reduce top margin or padding of Carousel */
 
 .carousel-container {
-    margin-top: -10px;
+    margin-top: 8px;
     /* Adjust this value as needed */
     padding-top: 0;
 }
