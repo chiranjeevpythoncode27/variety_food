@@ -47,7 +47,7 @@ export default function COD() {
     try {
       const finalData = convertToJson(formData);
       const response = await axios.post(
-        "https://variety-food-front-end.onrender.com//api/send-sms",
+        "https://variety-food-front-end.onrender.com/api/send-sms",
         finalData, // ✅ Send the correctly formatted JSON
         { headers: { "Content-Type": "application/json" } }
       );

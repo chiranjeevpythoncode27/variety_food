@@ -16,7 +16,7 @@ export default function AddItem() {
     const handleSubmit = async(e) => {
         e.preventDefault();
 
-        const response = await fetch("https://variety-food-front-end.onrender.com//api/addfooditem", {
+        const response = await fetch("https://variety-food-front-end.onrender.com/api/addfooditem", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -74,8 +74,8 @@ export default function AddItem() {
         required / >
         <
         button type = "submit"
-        className = "btn btn-success" > Add Item < /button> <
-        /form> <
+        className = "btn btn-success" > Add Item < /button> < /
+        form > <
         /div>
     );
 }
