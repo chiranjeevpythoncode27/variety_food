@@ -20,22 +20,25 @@ export default function COD() {
   };
 
   // Convert form data to required JSON format
-  const convertToJson = (formData) => {
+   const convertToJson = (formData) => {
+    const totalAmount = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
+
     return {
-      phone: `+917060988418`, 
+      phone: `+917060988418`,
       message: `
-  📦 *New Order Received* 🚀
-  
-  👤 *Customer Name:* ${formData.name}
-  🏠 *Address:* ${formData.address}
-  📞 *Contact Number:* ${formData.phone}
-  
-  🛒 *Order Summary:*
-  ${cart.map((item, index) => `• ${item.itemName} (Qty: ${item.quantity})`).join("\n")}
-  
-  ✅ *Total Items:* ${cart.length}
-  
-  Please process the order accordingly. 📩
+📦 *New Order Received* 🚀
+
+👤 *Customer Name:* ${formData.name}
+🏠 *Address:* ${formData.address}
+📞 *Contact Number:* ${formData.phone}
+
+🛒 *Order Summary:*
+${cart.map((item, index) => `• ${item.itemName} (Size: ${item.size}, Qty: ${item.quantity}) - ₹${item.price * item.quantity}`).join("\n")}
+
+✅ *Total Items:* ${cart.length}
+💰 *Total Amount:* ₹${totalAmount}
+
+Please process the order accordingly. 📩
       `,
     };
   };
