@@ -2,16 +2,16 @@ import React, { useEffect, useState } from "react";
 import Carousel from "../Carousal";
 import Footer from "../Footer";
 import FoodList from "../FoodList";
-import { FaArrowUp } from "react-icons/fa"; // Import arrow icon
+import { FaArrowUp } from "react-icons/fa";
 import "./home.css";
 
 export default function Home() {
-    const [foodCat, setFoodCat] = useState([]); 
+    const [foodCat, setFoodCat] = useState([]);
     const [foodItems, setFoodItems] = useState([]);
     const [searchQuery, setSearchQuery] = useState("");
     const [isLoaded, setIsLoaded] = useState(false);
     const [error, setError] = useState(null);
-    const [showBackToTop, setShowBackToTop] = useState(false); // State for Back to Top button
+    const [showBackToTop, setShowBackToTop] = useState(false);
 
     useEffect(() => {
         const loadData = async () => {
@@ -36,21 +36,15 @@ export default function Home() {
         loadData();
     }, []);
 
-    // Show Back to Top button when scrolling down
     useEffect(() => {
         const handleScroll = () => {
-            if (window.scrollY > 300) {
-                setShowBackToTop(true);
-            } else {
-                setShowBackToTop(false);
-            }
+            setShowBackToTop(window.scrollY > 300);
         };
 
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
-    // Function to scroll to the top
     const scrollToTop = () => {
         window.scrollTo({ top: 0, behavior: "smooth" });
     };
@@ -61,10 +55,14 @@ export default function Home() {
 
     return (
         <div style={{ backgroundColor: "#fffacd", minHeight: "100vh", paddingBottom: "20px" }}>
-            {/* ✅ Show "Welcome to Variety" Only During Loading */}
+            {/* ✅ Show Loading Spinner with Logo Instead of Text */}
             {!isLoaded ? (
                 <div className="loading-container">
-                    <h1 className="welcome-text">🎉 Welcome to Variety Sweets & Restaurant 🎉</h1>
+                    <img 
+                        src="https://i.postimg.cc/02DXQszV/Whats-App-Image-2025-03-18-at-14-40-25-1.jpg" 
+                        alt="Variety Sweets Logo"
+                        className="loading-logo"
+                    />
                     <div className="loading-spinner"></div>
                 </div>
             ) : error ? (
