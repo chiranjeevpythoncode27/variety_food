@@ -4,33 +4,32 @@ import { useLocation, useNavigate } from "react-router-dom";
 import "./cod.css"; // ✅ Optional: Add styling
 
 export default function COD() {
-  
-  const location = useLocation();
-  const navigate = useNavigate();
-  const cart = location.state?.cart || [];
+    const location = useLocation();
+    const navigate = useNavigate();
+    const cart = location.state?.cart || [];
 
-  const [formData, setFormData] = useState({
-    name: "",
-    address: "",
-    phone: "",
-  });
 
-  // Handle form input change
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+    const [formData, setFormData] = useState({
+        name: "",
+        address: "",
+        phone: "",
+    });
 
-  // Convert form data to required JSON format
-<<<<<<< HEAD
-  const convertToJson = (formData) => {
-=======
-   const convertToJson = (formData) => {
->>>>>>> b9ae3a72f7508f362d6a3135ba51e0f87d9118b1
-    const totalAmount = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
+    // Handle form input change
+    const handleChange = (e) => {
+        setFormData({...formData, [e.target.name]: e.target.value });
+    };
 
-    return {
-      phone: `+917060988418`,
-      message: `
+    // Convert form data to JSON format
+    const convertToJson = (formData) => {
+            const totalAmount = cart.reduce(
+                (acc, item) => acc + item.price * item.quantity,
+                0
+            );
+
+            return {
+                phone: `+917060988418`,
+                message: `
 📦 *New Order Received* 🚀
 
 👤 *Customer Name:* ${formData.name}
@@ -38,7 +37,14 @@ export default function COD() {
 📞 *Contact Number:* ${formData.phone}
 
 🛒 *Order Summary:*
-${cart.map((item, index) => `• ${item.itemName} (Size: ${item.size}, Qty: ${item.quantity}) - ₹${item.price * item.quantity}`).join("\n")}
+${cart
+  .map(
+    (item) =>
+      `• ${item.itemName} (Size: ${item.size}, Qty: ${item.quantity}) - ₹${
+        item.price * item.quantity
+      }`
+  )
+  .join("\n")}
 
 ✅ *Total Items:* ${cart.length}
 💰 *Total Amount:* ₹${totalAmount}
@@ -47,8 +53,6 @@ Please process the order accordingly. 📩
       `,
     };
   };
-  
-  
 
   // Function to send COD confirmation via WhatsApp
   const confirmCOD = async (formData) => {
@@ -56,7 +60,7 @@ Please process the order accordingly. 📩
       const finalData = convertToJson(formData);
       const response = await axios.post(
         "https://variety-food.onrender.com/api/send-sms",
-        finalData, // ✅ Send the correctly formatted JSON
+        finalData,
         { headers: { "Content-Type": "application/json" } }
       );
 
