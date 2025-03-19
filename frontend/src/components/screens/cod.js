@@ -21,7 +21,11 @@ export default function COD() {
   };
 
   // Convert form data to required JSON format
+<<<<<<< HEAD
   const convertToJson = (formData) => {
+=======
+   const convertToJson = (formData) => {
+>>>>>>> b9ae3a72f7508f362d6a3135ba51e0f87d9118b1
     const totalAmount = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
     return {
